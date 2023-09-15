@@ -61,9 +61,11 @@ public class EditorTableManager : MonoBehaviour
         var rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), 100f);
         if (!rayHit.collider) return;
 
+        var offset = rayHit.collider.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         IDraggeable obj = rayHit.transform.GetComponent<IDraggeable>();
 
-        if (obj != null) obj.OnDrag();
+        if (obj != null) obj.OnDrag(offset);
 
         currentDragObject = obj;
     }

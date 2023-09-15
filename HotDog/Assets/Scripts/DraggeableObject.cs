@@ -13,7 +13,8 @@ public class DraggeableObject : MonoBehaviour, IDraggeable
     BoxCollider2D _boxCollider;
     SpriteRenderer _sp;
 
-    EditorTableManager.OffsetLimit offset;
+    EditorTableManager.OffsetLimit offsetsPadding;
+    Vector3 offset;
     Vector3 startPos;
 
     private void Start()
@@ -21,12 +22,13 @@ public class DraggeableObject : MonoBehaviour, IDraggeable
         _boxCollider = GetComponent<BoxCollider2D>();
         _sp = GetComponent<SpriteRenderer>();
 
-        offset = EditorTableManager.Instance.offset;
+        offsetsPadding = EditorTableManager.Instance.offset;
     }
 
-    public void OnDrag() 
+    public void OnDrag(Vector3 offset) 
     {
         startPos = transform.position;
+        this.offset = offset;
         onDragEvent?.Invoke();
     }
 
@@ -44,7 +46,8 @@ public class DraggeableObject : MonoBehaviour, IDraggeable
     public void OnFollow(Vector3 pos)
     {
         pos.z += 10;
-        transform.position = Camera.main.ScreenToWorldPoint(pos);
+
+        transform.position = Camera.main.ScreenToWorldPoint(pos) + offset;
 
         if (CheckLimits())
         {
@@ -61,8 +64,8 @@ public class DraggeableObject : MonoBehaviour, IDraggeable
         _sp.color = col;
     }
 
-    bool CheckLimits() => _boxCollider.bounds.min.x < offset.left   || 
-                          _boxCollider.bounds.max.x > offset.right  ||
-                          _boxCollider.bounds.min.y < offset.bottom ||
-                          _boxCollider.bounds.max.y > offset.up;
+    bool CheckLimits() => _boxCollider.bounds.min.x < offsetsPadding.left   || 
+                          _boxCollider.bounds.max.x > offsetsPadding.right  ||
+                          _boxCollider.bounds.min.y < offsetsPadding.bottom ||
+                          _boxCollider.bounds.max.y > offsetsPadding.up;
 }
