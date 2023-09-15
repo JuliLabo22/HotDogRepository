@@ -340,9 +340,10 @@ GameObject:
   m_Component:
   - component: {fileID: 165690988}
   - component: {fileID: 165690989}
+  - component: {fileID: 165690990}
   m_Layer: 0
   m_Name: BaseJuegoBot
-  m_TagString: Untagged
+  m_TagString: DraggeableZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,6 +415,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &165690990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165690987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa06ce598df197244a0e9bf5b213c0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset:
+    up: -6
+    bottom: -14.5
+    left: -8.75
+    right: 8.75
 --- !u!1 &215316829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1699,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217946218}
-  - component: {fileID: 1217946219}
   m_Layer: 0
   m_Name: ObjetosDecoracion
   m_TagString: Untagged
@@ -1707,19 +1724,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1217946219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217946217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa06ce598df197244a0e9bf5b213c0ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isInEditMode: 0
 --- !u!1 &1277094171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2178,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1853919348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1853919350}
+  - component: {fileID: 1853919349}
+  m_Layer: 0
+  m_Name: EVENTMANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1853919349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853919348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7982681fc6a124c9af7cca8118b95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1853919350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853919348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47481537, y: -10.794848, z: 0.07171695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1861392262
 GameObject:
   m_ObjectHideFlags: 0

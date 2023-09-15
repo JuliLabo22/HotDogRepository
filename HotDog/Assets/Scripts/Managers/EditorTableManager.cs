@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EditorTableManager : MonoBehaviour
 {
     public static EditorTableManager Instance { get; private set; }
 
-    public bool _isInEditMode = false;
+    [Serializable]
+    public class OffsetLimit
+    {
+        public float up;
+        public float bottom;
+        public float left;
+        public float right;
+    }
+
+    public OffsetLimit offset;
+
+    private bool _isInEditMode = false;
     public bool IsInEditMode => _isInEditMode;
 
     IDraggeable currentDragObject;
@@ -15,6 +27,11 @@ public class EditorTableManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(this);
+    }
+
+    private void Start()
+    {
+        EventManager.Instance.AddEvent("OnQuitDragZone", OnDrop);
     }
 
     public void EditMode(bool value) => _isInEditMode = value;
@@ -32,7 +49,10 @@ public class EditorTableManager : MonoBehaviour
         {
             OnDrop();
         }
+    }
 
+    private void FixedUpdate()
+    {
         FollowCursor();
     }
 
@@ -44,10 +64,11 @@ public class EditorTableManager : MonoBehaviour
         IDraggeable obj = rayHit.transform.GetComponent<IDraggeable>();
 
         if (obj != null) obj.OnDrag();
+
         currentDragObject = obj;
     }
 
-    void OnDrop()
+    void OnDrop(params object[] parameters)
     {
         if (currentDragObject != null)
         {
