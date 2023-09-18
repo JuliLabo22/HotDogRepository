@@ -29,11 +29,6 @@ public class EditorTableManager : MonoBehaviour
         else Destroy(this);
     }
 
-    private void Start()
-    {
-        EventManager.Instance.AddEvent("OnQuitDragZone", OnDrop);
-    }
-
     public void EditMode(bool value) => _isInEditMode = value;
 
     private void Update()
