@@ -65,7 +65,7 @@ public class EditorTableManager : MonoBehaviour
 
         IDraggeable obj = rayHit.transform.GetComponent<IDraggeable>();
 
-        if (obj != null) obj.OnDrag(offset);
+        if (obj != null) obj.OnStartDrag(offset);
 
         currentDragObject = obj;
     }
@@ -83,6 +83,6 @@ public class EditorTableManager : MonoBehaviour
     {
         if (currentDragObject == null) return;
 
-        currentDragObject.OnFollow(Input.mousePosition);
+        currentDragObject.OnDrag(Input.mousePosition);
     }
 }

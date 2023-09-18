@@ -25,7 +25,7 @@ public class DraggeableObject : MonoBehaviour, IDraggeable
         offsetsPadding = EditorTableManager.Instance.offset;
     }
 
-    public void OnDrag(Vector3 offset) 
+    public void OnStartDrag(Vector3 offset) 
     {
         startPos = transform.position;
         this.offset = offset;
@@ -43,7 +43,7 @@ public class DraggeableObject : MonoBehaviour, IDraggeable
         }
     }
 
-    public void OnFollow(Vector3 pos)
+    public void OnDrag(Vector3 pos)
     {
         pos.z += 10;
 

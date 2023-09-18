@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IDraggeable 
 {
-    void OnDrag(Vector3 offset);
+    void OnStartDrag(Vector3 offset);
     void OnDrop();
-    void OnFollow(Vector3 pos);
+    void OnDrag(Vector3 pos);
 }
