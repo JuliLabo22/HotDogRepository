@@ -1742,7 +1742,7 @@ GameObject:
   - component: {fileID: 842096057}
   - component: {fileID: 842096056}
   - component: {fileID: 842096059}
-  - component: {fileID: 842096058}
+  - component: {fileID: 842096060}
   m_Layer: 0
   m_Name: Tabla
   m_TagString: Untagged
@@ -1817,24 +1817,6 @@ Transform:
   m_Father: {fileID: 23981422}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &842096058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842096055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c608657c6ab4d3d41bc745e73ff99b82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDragEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onDropEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!61 &842096059
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1861,6 +1843,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 13.9, y: 8.48}
   m_EdgeRadius: 0
+--- !u!114 &842096060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842096055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c608657c6ab4d3d41bc745e73ff99b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDragEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDropEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &868623225
 GameObject:
   m_ObjectHideFlags: 0

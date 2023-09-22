@@ -53,6 +53,8 @@ public class EditorTableManager : MonoBehaviour
 
     void OnDrag()
     {
+        if (currentDragObject != null) return;
+
         var rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), 100f);
         if (!rayHit.collider) return;
 
@@ -65,7 +67,7 @@ public class EditorTableManager : MonoBehaviour
         currentDragObject = obj;
     }
 
-    void OnDrop(params object[] parameters)
+    void OnDrop()
     {
         if (currentDragObject != null)
         {

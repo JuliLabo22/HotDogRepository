@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using DG.Tweening;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class DraggeableObject : MonoBehaviour, IDraggeable
+public class DraggeableEditableObject : MonoBehaviour, IDraggeable
 {
     [SerializeField] private UnityEvent onDragEvent;
     [SerializeField] private UnityEvent onDropEvent;
