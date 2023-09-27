@@ -6,9 +6,11 @@ using DG.Tweening;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Ingredient : MonoBehaviour, IDraggeable
 {
+    public IngredientType ingredientType;
+   
     Vector3 originalScale;
 
-    bool isDragging;
+    protected bool IsDragging { get; set; }
 
     private void Awake()
     {
@@ -18,26 +20,26 @@ public class Ingredient : MonoBehaviour, IDraggeable
 
     private void Start()
     {
-        isDragging = true;
+        IsDragging = true;
         transform.DOScale(originalScale, 0.3f).SetEase(Ease.InOutQuad);
     }
 
     public void OnDrag(Vector3 pos)
     {
-        if (!isDragging) return;
+        if (!IsDragging) return;
 
         pos.z += 10;
 
         transform.position = Camera.main.ScreenToWorldPoint(pos);
     }
 
-    public void OnDrop()
+    public virtual void OnDrop()
     {
-        isDragging = false;
+        IsDragging = false;
     }
 
-    public void OnStartDrag(Vector3 offset)
+    public virtual void OnStartDrag(Vector3 offset)
     {
-        isDragging = true;
+        IsDragging = true;
     }
 }

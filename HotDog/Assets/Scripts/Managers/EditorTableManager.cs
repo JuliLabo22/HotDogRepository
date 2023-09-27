@@ -18,7 +18,7 @@ public class EditorTableManager : MonoBehaviour
 
     public OffsetLimit offset;
 
-    private bool _isInEditMode = false;
+    [SerializeField] private bool _isInEditMode = false;
     public bool IsInEditMode => _isInEditMode;
 
     IDraggeable currentDragObject;
@@ -33,7 +33,7 @@ public class EditorTableManager : MonoBehaviour
 
     private void Update()
     {
-        if (_isInEditMode) return;
+        if (!_isInEditMode) return;
 
         if (Input.GetMouseButtonDown(0))
         {
