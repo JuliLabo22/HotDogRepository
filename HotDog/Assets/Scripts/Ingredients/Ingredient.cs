@@ -8,9 +8,11 @@ public class Ingredient : MonoBehaviour, IDraggeable
 {
     public IngredientType ingredientType;
    
-    Vector3 originalScale;
+    private Vector3 originalScale;
 
     protected bool IsDragging { get; set; }
+
+    private bool canBeDrop;
 
     private void Awake()
     {
@@ -35,11 +37,23 @@ public class Ingredient : MonoBehaviour, IDraggeable
 
     public virtual void OnDrop()
     {
+        if (!canBeDrop) transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() => Destroy(this.gameObject));
+
         IsDragging = false;
     }
 
     public virtual void OnStartDrag(Vector3 offset)
     {
         IsDragging = true;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SupportObj")) canBeDrop = true;
+    }
+
+    protected virtual void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("SupportObj")) canBeDrop = false;
     }
 }
