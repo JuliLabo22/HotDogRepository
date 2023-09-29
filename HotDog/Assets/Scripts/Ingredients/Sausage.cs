@@ -25,7 +25,7 @@ public class Sausage : Ingredient
             StopAllCoroutines();
             StartCoroutine(StartCookingCO());
 
-            cookObj.OnDropSausage();
+            if (cookObj) cookObj.OnDropSausage();
         }
     }
 
@@ -34,7 +34,7 @@ public class Sausage : Ingredient
         base.OnStartDrag(offset);
 
         ResetSprites();
-        cookObj.OnTakeSausage();
+        if(cookObj) cookObj.OnTakeSausage();
     }
 
     private IEnumerator StartCookingCO()
@@ -83,8 +83,10 @@ public class Sausage : Ingredient
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
+
         if (collision.GetComponent<CookObject>())
         {
             cookObj = collision.GetComponent<CookObject>();
@@ -94,17 +96,13 @@ public class Sausage : Ingredient
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected override void OnTriggerExit2D(Collider2D collision)
     {
+        base.OnTriggerExit2D(collision);
+
         if (collision.GetComponent<CookObject>())
         {
             isOverOven = false;
         }
     }
-}
-
-public enum IngredientType { 
-    RawSausage,
-    CoockedSausage,
-    BurnedSausage
 }
