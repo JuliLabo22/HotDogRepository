@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using DG.Tweening;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class DraggeableEditableObject : MonoBehaviour, IDraggeable
 {
     [SerializeField] private UnityEvent onDragEvent;
@@ -16,6 +17,8 @@ public class DraggeableEditableObject : MonoBehaviour, IDraggeable
     EditorTableManager.OffsetLimit offsetsPadding;
     Vector3 offset;
     Vector3 startPos;
+
+    bool isColliderOverOther;
 
     private void Start()
     {
@@ -36,7 +39,7 @@ public class DraggeableEditableObject : MonoBehaviour, IDraggeable
     {
         onDropEvent?.Invoke();
 
-        if (CheckLimits())
+        if (CheckLimits() || isColliderOverOther)
         {
             transform.DOMove(startPos, 0.5f);
             ChangeColor(Color.white);
@@ -49,7 +52,7 @@ public class DraggeableEditableObject : MonoBehaviour, IDraggeable
 
         transform.position = Camera.main.ScreenToWorldPoint(pos) + offset;
 
-        if (CheckLimits())
+        if (CheckLimits() || isColliderOverOther)
         {
             ChangeColor(Color.red);
         }
@@ -68,4 +71,14 @@ public class DraggeableEditableObject : MonoBehaviour, IDraggeable
                           _boxCollider.bounds.max.x > offsetsPadding.right  ||
                           _boxCollider.bounds.min.y < offsetsPadding.bottom ||
                           _boxCollider.bounds.max.y > offsetsPadding.up;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<DraggeableEditableObject>()) isColliderOverOther = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<DraggeableEditableObject>()) isColliderOverOther = false;
+    }
 }

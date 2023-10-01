@@ -33,7 +33,7 @@ public class EditorTableManager : MonoBehaviour
 
     private void Update()
     {
-        if (_isInEditMode) return;
+        if (!_isInEditMode) return;
 
         if (Input.GetMouseButtonDown(0))
         {

@@ -21,6 +21,8 @@ public class IngredientPlacementManager : MonoBehaviour
 
     private void Update()
     {
+        if (EditorTableManager.Instance.IsInEditMode) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             OnDrag();

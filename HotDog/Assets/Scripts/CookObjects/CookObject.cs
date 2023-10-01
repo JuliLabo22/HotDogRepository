@@ -13,7 +13,7 @@ public class CookObject : MonoBehaviour
 
     public void OnDropSausage()
     {
-        feedBackEffect.DOFade(1, 0.5f);
+        feedBackEffect.DOFade(0.8f, 0.5f);
     }
 
     public void OnTakeSausage()
