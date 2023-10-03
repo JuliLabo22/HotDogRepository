@@ -29,7 +29,11 @@ public class EditorTableManager : MonoBehaviour
         else Destroy(this);
     }
 
-    public void EditMode(bool value) => _isInEditMode = value;
+    public void EditMode(bool value)
+    {
+        _isInEditMode = value;
+        EventManager.Instance.Trigger("OnStateEditorChange", IsInEditMode);
+    }
 
     private void Update()
     {

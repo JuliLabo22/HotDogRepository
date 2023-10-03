@@ -9,6 +9,7 @@ public class Ingredient : MonoBehaviour, IDraggeable
     public IngredientType ingredientType;
    
     private Vector3 originalScale;
+    private Vector3 lastPos = Vector3.zero;
 
     protected bool IsDragging { get; set; }
 
@@ -37,7 +38,9 @@ public class Ingredient : MonoBehaviour, IDraggeable
 
     public virtual void OnDrop()
     {
-        if (!canBeDrop) transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() => Destroy(this.gameObject));
+        if (!canBeDrop && lastPos == Vector3.zero) transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InOutQuad).OnComplete(() => Destroy(this.gameObject));
+        else if (!canBeDrop && lastPos != Vector3.zero) transform.DOMove(lastPos, 0.2f).SetEase(Ease.InOutQuad);
+        else lastPos = transform.position;
 
         IsDragging = false;
     }

@@ -57,6 +57,7 @@ public class IngredientPlacementManager : MonoBehaviour
         if (currentIngredient == null) return;
 
         currentIngredient.OnDrop();
+        currentIngredient = null;
     }
 
     void FollowCursor()

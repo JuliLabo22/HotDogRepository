@@ -6,12 +6,12 @@ using DG.Tweening;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class DraggeableEditableObject : MonoBehaviour, IDraggeable
+public class DraggeableEditableObject : StateChangerEditor, IDraggeable
 {
     [SerializeField] private UnityEvent onDragEvent;
     [SerializeField] private UnityEvent onDropEvent;
 
-    BoxCollider2D _boxCollider;
+    BoxCollider2D boxCollider;
     SpriteRenderer _sp;
 
     EditorTableManager.OffsetLimit offsetsPadding;
@@ -20,11 +20,18 @@ public class DraggeableEditableObject : MonoBehaviour, IDraggeable
 
     bool isColliderOverOther;
 
-    private void Start()
+    private void Awake()
     {
-        _boxCollider = GetComponent<BoxCollider2D>();
-        _sp = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        onEditorOn += () => boxCollider.enabled = true;
+        onEditorOff += () => boxCollider.enabled = false;
 
+        _sp = GetComponent<SpriteRenderer>();
+    }
+
+    private new void Start()
+    {
+        base.Start();
         offsetsPadding = EditorTableManager.Instance.offset;
     }
 
@@ -67,10 +74,10 @@ public class DraggeableEditableObject : MonoBehaviour, IDraggeable
         _sp.color = col;
     }
 
-    bool CheckLimits() => _boxCollider.bounds.min.x < offsetsPadding.left   || 
-                          _boxCollider.bounds.max.x > offsetsPadding.right  ||
-                          _boxCollider.bounds.min.y < offsetsPadding.bottom ||
-                          _boxCollider.bounds.max.y > offsetsPadding.up;
+    bool CheckLimits() => boxCollider.bounds.min.x < offsetsPadding.left   || 
+                          boxCollider.bounds.max.x > offsetsPadding.right  ||
+                          boxCollider.bounds.min.y < offsetsPadding.bottom ||
+                          boxCollider.bounds.max.y > offsetsPadding.up;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

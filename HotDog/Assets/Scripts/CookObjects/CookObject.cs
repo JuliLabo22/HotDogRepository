@@ -4,12 +4,21 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class CookObject : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class CookObject : StateChangerEditor
 {
     [SerializeField] SpriteRenderer feedBackEffect;
+    private BoxCollider2D boxCollider;
 
     [SerializeField] float speedCoock;
     public float SpeedCook => speedCoock;
+
+    private void Awake()
+    {
+        boxCollider = GetComponent<BoxCollider2D>();
+        onEditorOn += () => boxCollider.enabled = false;
+        onEditorOff += () => boxCollider.enabled = true;
+    }
 
     public void OnDropSausage()
     {
