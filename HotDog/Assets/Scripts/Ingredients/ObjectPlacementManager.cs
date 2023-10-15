@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IngredientPlacementManager : MonoBehaviour
+public class ObjectPlacementManager : MonoBehaviour
 {
-    public static IngredientPlacementManager Instance { get; private set; }
+    public static ObjectPlacementManager Instance { get; private set; }
 
-    Ingredient currentIngredient;
+    IDraggeable currentIngredient;
 
     private void Awake()
     {
@@ -44,10 +44,10 @@ public class IngredientPlacementManager : MonoBehaviour
         var rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), 100f);
         if (!rayHit.collider) return;
 
-        if (rayHit.collider.GetComponent<BoxIngredient>()) currentIngredient = rayHit.collider.GetComponent<BoxIngredient>().SpawnIngredient();
-        if (rayHit.collider.GetComponent<Ingredient>())
+        currentIngredient = CheckElement(rayHit);
+
+        if (currentIngredient != null)
         {
-            currentIngredient = rayHit.collider.GetComponent<Ingredient>();
             Vector3 offset = rayHit.collider.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currentIngredient.OnStartDrag(offset);
         }
@@ -66,5 +66,16 @@ public class IngredientPlacementManager : MonoBehaviour
         if (currentIngredient == null) return;
 
         currentIngredient.OnDrag(Input.mousePosition);
+    }
+
+    IDraggeable CheckElement(RaycastHit2D ray)
+    {
+        if (ray.collider.GetComponent<BoxIngredient>())
+            return ray.collider.GetComponent<BoxIngredient>().SpawnIngredient();
+
+        if (ray.collider.GetComponent<IDraggeable>() != null)
+            return ray.collider.GetComponent<IDraggeable>();
+
+        return null;
     }
 }
