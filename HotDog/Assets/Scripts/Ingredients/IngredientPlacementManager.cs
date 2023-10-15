@@ -48,7 +48,8 @@ public class IngredientPlacementManager : MonoBehaviour
         if (rayHit.collider.GetComponent<Ingredient>())
         {
             currentIngredient = rayHit.collider.GetComponent<Ingredient>();
-            currentIngredient.OnStartDrag(Vector3.zero);
+            Vector3 offset = rayHit.collider.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            currentIngredient.OnStartDrag(offset);
         }
     }
 

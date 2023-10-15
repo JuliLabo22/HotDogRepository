@@ -23,6 +23,7 @@ public class DraggeableEditableObject : StateChangerEditor, IDraggeable
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+
         onEditorOn += () => boxCollider.enabled = true;
         onEditorOff += () => boxCollider.enabled = false;
 

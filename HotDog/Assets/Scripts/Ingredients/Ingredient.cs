@@ -10,6 +10,7 @@ public class Ingredient : MonoBehaviour, IDraggeable
    
     private Vector3 originalScale;
     private Vector3 lastPos = Vector3.zero;
+    private Vector3 offset;
 
     protected bool IsDragging { get; set; }
 
@@ -33,7 +34,7 @@ public class Ingredient : MonoBehaviour, IDraggeable
 
         pos.z += 10;
 
-        transform.position = Camera.main.ScreenToWorldPoint(pos);
+        transform.position = Camera.main.ScreenToWorldPoint(pos) + offset;
     }
 
     public virtual void OnDrop()
@@ -48,6 +49,7 @@ public class Ingredient : MonoBehaviour, IDraggeable
     public virtual void OnStartDrag(Vector3 offset)
     {
         IsDragging = true;
+        this.offset = offset;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
