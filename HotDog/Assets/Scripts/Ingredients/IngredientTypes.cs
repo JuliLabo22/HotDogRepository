@@ -1,5 +1,8 @@
 public enum IngredientType
 {
+    //CARTON
+    Carton,
+
     //SALCHICHA
     RawSausage,
     CoockedSausage,
@@ -8,4 +11,6 @@ public enum IngredientType
     //PAN
     Bread,
     SlicedBread,
+
+    HotDog,
 }

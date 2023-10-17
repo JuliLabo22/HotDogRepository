@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class BoxIngredient : StateChangerEditor
 {
-    [SerializeField] Ingredient ingredient;
+    [SerializeField] IngredientType ingredientToSpawn;
     private BoxCollider2D boxCollider;
 
     private void Awake()
@@ -18,6 +19,6 @@ public class BoxIngredient : StateChangerEditor
 
     public Ingredient SpawnIngredient()
     {
-        return Instantiate(ingredient, transform.position, Quaternion.identity);
+        return IngredientsSpawnerManager.Instance.SpawnIngredientRet(ingredientToSpawn, transform.position, Quaternion.identity);
     }
 }

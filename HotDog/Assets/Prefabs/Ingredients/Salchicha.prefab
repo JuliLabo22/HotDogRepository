@@ -180,7 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50687b9721182448a7e140c7c23dd99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientType: 0
+  ingredientType: 1
+  ingredientTypeToReact: 5
   spCoocked: {fileID: 1245088594832082615}
   spBurned: {fileID: 1245088594944875790}
 --- !u!1 &1245088594832082614

@@ -27,7 +27,7 @@ public class KitchenTools : DraggeableElement
         if (!canBeDrop) transform.DOMove(lastPos, 0.2f).SetEase(Ease.InOutQuad);
         else lastPos = transform.position;
 
-        if(ingredientToReact && ingredientToReact.ingredientType.Equals(ingredientTypeToReact)) onAction?.Invoke();
+        if(ingredientToReact && ingredientToReact.IngredientType.Equals(ingredientTypeToReact)) onAction?.Invoke();
 
         IsDragging = false;
     }

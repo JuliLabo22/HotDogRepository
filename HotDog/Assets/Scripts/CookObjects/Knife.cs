@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class Knife : KitchenTools
 {
-    [SerializeField] Ingredient slicedBread;
+    [SerializeField] IngredientType ingredientToSpawn;
 
     protected override void Awake()
     {
@@ -19,7 +15,7 @@ public class Knife : KitchenTools
     {
         if (ingredientToReact)
         {
-            Instantiate(slicedBread, ingredientToReact.transform.position, Quaternion.identity);
+            IngredientsSpawnerManager.Instance.SpawnIngredient(ingredientToSpawn, ingredientToReact.transform.position, Quaternion.identity);
             Destroy(ingredientToReact.gameObject);
         }
     }

@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Ingredient : DraggeableElement
 {
-    public IngredientType ingredientType;
+    [SerializeField] IngredientType ingredientType;
+
+    public IngredientType IngredientType => ingredientType;
+
+    public void SetIngredientType(IngredientType type) => ingredientType = type;
 }

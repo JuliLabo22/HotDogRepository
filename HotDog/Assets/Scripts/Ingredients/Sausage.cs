@@ -34,21 +34,21 @@ public class Sausage : Ingredient
         base.OnStartDrag(offset);
 
         ResetSprites();
-        if(cookObj) cookObj.OnTakeSausage();
+        if (cookObj) cookObj.OnTakeSausage();
     }
 
     private IEnumerator StartCookingCO()
     {
         while (isOverOven && !IsDragging)
         {
-            switch (ingredientType)
+            switch (IngredientType)
             {
                 case IngredientType.RawSausage:
                     CookingAlpha(spCoocked, IngredientType.CoockedSausage);
                     break;
                 case IngredientType.CoockedSausage:
 
-                    if(spBurned.color.a == 0) yield return new WaitForSeconds(0.5f);
+                    if (spBurned.color.a == 0) yield return new WaitForSeconds(0.5f);
 
                     CookingAlpha(spBurned, IngredientType.BurnedSausage);
                     break;
@@ -67,12 +67,12 @@ public class Sausage : Ingredient
     {
         sp.color += alphaColor * Time.deltaTime * speedCooking;
 
-        if (sp.color.a >= 1) ingredientType = it;
+        if (sp.color.a >= 1) SetIngredientType(it);
     }
 
     void ResetSprites()
     {
-        switch (ingredientType)
+        switch (IngredientType)
         {
             case IngredientType.RawSausage:
                 spCoocked.color -= new Color(0, 0, 0, spCoocked.color.a);
