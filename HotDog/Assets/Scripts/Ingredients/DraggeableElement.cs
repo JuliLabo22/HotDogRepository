@@ -45,6 +45,8 @@ public class DraggeableElement : MonoBehaviour, IDraggeable
         else lastPos = transform.position;
 
         IsDragging = false;
+
+        if(GetComponent<TriggeringBase>()) GetComponent<TriggeringBase>().OnTrigger();
     }
 
     public virtual void OnStartDrag(Vector3 offset)

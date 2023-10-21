@@ -19,7 +19,7 @@ public class Sausage : Ingredient
     public override void OnDrop()
     {
         base.OnDrop();
-        
+
         if (isOverOven)
         {
             StopAllCoroutines();
@@ -48,11 +48,18 @@ public class Sausage : Ingredient
                     break;
                 case IngredientType.CoockedSausage:
 
+                    if (!GetComponent<TriggerSpawner>())
+                    {
+                        var ts = gameObject.AddComponent<TriggerSpawner>();
+                        ts.Configure(IngredientType.SlicedBread, IngredientType.HotDog);
+                    }
+
                     if (spBurned.color.a == 0) yield return new WaitForSeconds(0.5f);
 
                     CookingAlpha(spBurned, IngredientType.BurnedSausage);
                     break;
                 case IngredientType.BurnedSausage:
+                    if (GetComponent<TriggerSpawner>()) Destroy(GetComponent<TriggerSpawner>());
                     isOverOven = false;
                     break;
             }
