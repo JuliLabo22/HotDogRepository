@@ -7418,6 +7418,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 23981422}
     m_Modifications:
+    - target: {fileID: 8148103506975388628, guid: b434f6871fae89a499c8b96325775113, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8148103506975388631, guid: b434f6871fae89a499c8b96325775113, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -7532,6 +7536,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 23981422}
     m_Modifications:
+    - target: {fileID: 7463694791965186055, guid: 777ebeab228133b4ba617775b832de6b, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8572414602438638520, guid: 777ebeab228133b4ba617775b832de6b, type: 3}
       propertyPath: m_Name
       value: Cuchillo

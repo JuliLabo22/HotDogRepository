@@ -19,7 +19,7 @@ public class Sausage : Ingredient
     public override void OnDrop()
     {
         base.OnDrop();
-
+        
         if (isOverOven)
         {
             StopAllCoroutines();

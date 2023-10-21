@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class DraggeableElement : MonoBehaviour, IDraggeable
 {
     private Vector3 originalScale;
@@ -13,6 +14,8 @@ public class DraggeableElement : MonoBehaviour, IDraggeable
     protected bool IsDragging { get; set; }
 
     protected bool canBeDrop;
+
+    private bool firstAppear = true;
 
     protected virtual void Awake()
     {
@@ -48,6 +51,12 @@ public class DraggeableElement : MonoBehaviour, IDraggeable
     {
         IsDragging = true;
         this.offset = offset;
+
+        if(firstAppear) 
+        {
+            this.offset = Vector3.zero;
+            firstAppear = false;
+        }
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
